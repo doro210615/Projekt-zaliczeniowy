@@ -9,9 +9,9 @@ test('has title', async ({ page }) => {
   await page.locator('.fc-cta-consent').click();
   await expect(page.locator('.fc-cta-consent')).not.toBeVisible();
 
-  await page.locator('[data-qa="login-email"]').fill('dporfbygzexbvdleaz@nesopf.com');
-  await page.locator('[data-qa="login-password"]').fill('test123');
+  await page.locator('[data-qa="login-email"]').fill('doro@wp.pl');
+  await page.locator('[data-qa="login-password"]').fill('Test12');
   await page.locator('[data-qa="login-button"]').click();
-  await expect(page.getByText("Logged in as test2")).toBeVisible();
+  await expect(page.getByText("Logged in as doro")).toBeVisible();
 
 });

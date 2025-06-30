@@ -3,7 +3,7 @@ import { expect } from "@playwright/test";
 class Gdpr {
     constructor(page) {
         this.page = page;
-        this.cookieConsentButton = page.locator('.fc-cta-content');
+        this.cookieConsentButton = page.locator('.fc-cta-consent');
     }
 
     async acceptCookies () {

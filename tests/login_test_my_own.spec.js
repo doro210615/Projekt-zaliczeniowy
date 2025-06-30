@@ -10,6 +10,6 @@ test('zaloguj sie', async ({ page }) => {
 
   await gdpr.acceptCookies();
 
-  await login.logInWithCredentials('dporfbygzexbvdleaz@nesopf.com', 'test123');
-  await expect(page.getByText('Logged in as test2')).toBeVisible();
+  await login.logInWithCredentials(process.env.EMAIL, process.env.PASSWORD);
+  await expect(page.getByText('Logged in as $[process.env.TESTUSER]')).toBeVisible();
 });
