@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
+import { Gdpr } from '../pages/Gdpr.js';
+import { Login } from '../pages/Login.js';
 
-test('test', async ({ page }) => {
-  await page.goto('https://www.automationexercise.com/');
-  await page.getByRole('button', { name: 'Consent' }).click();
-  await page.getByRole('link', { name: ' Signup / Login' }).click();
-  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').click();
-  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').fill('doro@wp.pl');
-  await page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address').press('Tab');
-  await page.getByRole('textbox', { name: 'Password' }).fill('Test12');
-  await page.getByRole('button', { name: 'Login' }).click();
-  await page.getByText('Logged in as doro').click();
+test('zaloguj sie', async ({ page }) => {
+  const gdpr = new Gdpr (page);
+  const login = new Login (page);
+
+  await page.goto('/login');
+
+  await gdpr.acceptCookies();
+
+  await login.logInWithCredentials('dporfbygzexbvdleaz@nesopf.com', 'test123');
+  await expect(page.getByText('Logged in as test2')).toBeVisible();
 });
